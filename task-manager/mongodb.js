@@ -19,12 +19,20 @@ MongoClient.connect(connectURL,{useNewUrlParser:true},(error,client)=>{
     console.log('Connected')
     const db=client.db(databaseName)
 
-    db.collection('users').find({name: 'Jashanpreet Singh'}).toArray((error,user)=>{
+    db.collection('tasks').find({completed:false}).toArray((error,user)=>{
         if(error){
            return console.log('Error while fetching user')
         }
         console.log(user)
 
+    })
+
+
+    db.collection('tasks').findOne({_id: new ObjectID("6291fa278953d6eb94ada16c")},(error,user)=>{
+        if(error){
+            return console.log("Error while fetching the user")
+        }
+        console.log(user)
     })
     
 })
