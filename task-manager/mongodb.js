@@ -19,7 +19,7 @@ MongoClient.connect(connectURL,{useNewUrlParser:true},(error,client)=>{
     console.log('Connected')
     const db=client.db(databaseName)
 
-    db.collection('users').findOne({name: 'Jashanpreet Singh'},(error,user)=>{
+    db.collection('users').find({name: 'Jashanpreet Singh'}).toArray((error,user)=>{
         if(error){
            return console.log('Error while fetching user')
         }
