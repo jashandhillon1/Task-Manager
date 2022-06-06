@@ -19,21 +19,34 @@ MongoClient.connect(connectURL,{useNewUrlParser:true},(error,client)=>{
     console.log('Connected')
     const db=client.db(databaseName)
 
-    db.collection('tasks').find({completed:false}).toArray((error,user)=>{
-        if(error){
-           return console.log('Error while fetching user')
+    db.collection('users').updateOne({
+        _id: new ObjectID("628a256e30b319373b362791")
+    },{
+        $set:{
+            name:"Lovedeep"
         }
-        console.log(user)
 
+    }).then((result)=>{
+       console.log(result) 
+    }).catch((error)=>{
+        console.log(error)
     })
 
 
-    db.collection('tasks').findOne({_id: new ObjectID("6291fa278953d6eb94ada16c")},(error,user)=>{
-        if(error){
-            return console.log("Error while fetching the user")
+    db.collection('tasks').updateMany({
+        completed:false
+
+    },{
+        $set:{
+            completed:true
         }
-        console.log(user)
+    }).then((result)=>{
+        console.log(result)
+    }).catch((error)=>{
+        console.log(error)
     })
+
+    
     
 })
 
