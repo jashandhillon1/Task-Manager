@@ -1,6 +1,7 @@
 const mongoose=require('mongoose')
 const validator=require('validator')
-const Task=mongoose.model('Task',{
+
+const TaskSchema=new mongoose.Schema({
     description:{
         type: String,
         trim:true,
@@ -19,6 +20,9 @@ const Task=mongoose.model('Task',{
         ref:'User'
 
     }
+},{
+    timestamps: true
 })
+const Task=mongoose.model('Task',TaskSchema)
 
 module.exports=Task
