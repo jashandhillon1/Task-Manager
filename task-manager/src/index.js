@@ -8,20 +8,6 @@ const port=process.env.PORT || 3000
 
 
 
-// app.use((req,res,next)=>{
-//     if(req.method==='GET'){
-//         res.send('GET requests are disabled')
-
-//     }
-//     else{
-//         next()
-//     }   
-
-// })
-
-// app.use((req,res,next)=>{
-//     res.status(503).send('Site is currently down')
-// })
 
 
 app.use(express.json())
@@ -37,18 +23,4 @@ app.listen(port,()=>{
 
 
 
-const Task=require('./models/task')
-const User=require('./models/user')
-
-const main=async()=>{
-    // const task=await Task.findById('62c97ced677de411ac86c3bf')
-    // await task.populate('owner')
-    // console.log(task.owner)
-    const user=await User.findById('62ca76927dd887b55465131c')
-    await user.populate('tasks')
-    console.log(user.tasks)
-
-
-}
-main()
 
